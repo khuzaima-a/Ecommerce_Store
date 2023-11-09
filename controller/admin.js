@@ -26,16 +26,16 @@ exports.getEditProduct = (req, res, next) => {
         errorMessage: null,
       });
     })
-    .catch(err => {
+    .catch((err) => {
       const error = new Error(err);
       error.httpStatusCode = 500;
-      return next(error)
+      return next(error);
     });
 };
 
 exports.postAddProduct = (req, res, next) => {
   const image = req.file;
-  if(!image) {
+  if (!image) {
     return res.status(422).render("admin/add-product", {
       pageTitle: "Add Product",
       path: "/admin/add-product",
@@ -86,7 +86,7 @@ exports.postAddProduct = (req, res, next) => {
 exports.postEditProduct = (req, res, next) => {
   console.log("HERE");
   const image = req.file;
-  console.log(image)
+  console.log(image);
   const id = req.body.id;
   const errors = validationResult(req);
 
@@ -131,7 +131,12 @@ exports.postEditProduct = (req, res, next) => {
 
 exports.postDeleteProduct = (req, res, next) => {
   const id = req.params.productId;
-  Product.deleteOne({ _id: id, userId: req.user._id })
+  Product.findById(id)
+    .then((product) => {
+      if (!product) return next(new Error("Product not found."));
+      fileDelete.deleteFile(product.imgUrl);
+      return Product.deleteOne({ _id: id, userId: req.user._id });
+    })
     .then(() => {
       res.redirect("/admin/products");
     })
