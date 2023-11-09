@@ -1,0 +1,35 @@
+<%- include('../includes/head.ejs') %> 
+<link rel="stylesheet" href="/css/card.css" />
+<link rel="stylesheet" href="/css/empty-cart.css" />
+</head>
+<body>
+ <%- include('../includes/nav.ejs') %>
+<main class="shop-main">
+  <% if(prods.length > 0) { %>
+  <section class="cards">
+    <% for(let product of prods) { %>
+    <article class="card">
+      <img class="card-img" src="<%= product.imgUrl %>" alt="Product" />
+      <div class="card-header">
+        <h1 class="card-title"><%= product.title %></h1>
+        <h3 class="card-price">$<%= product.price %></h3>
+      </div>
+      <div class="card-desc"><%= product.description %></div>
+      <div class="action_btns">
+        <a class="btn btn-1" href="/products/<%= product._id %>">Details</a>
+        <form action="/cart" method="POST" class="btn-2">
+          <input type="hidden" , value="<%= product._id %>" name="id">
+          <button class="btn">Add to Cart</button>
+        </form>
+      </div>
+    </article>
+    <% } %>
+  </section>
+  <% } else { %>
+  <%- include('../includes/empty-cart.ejs') %>
+  <h3>Check back soon! 🛒🌟</h3>
+  <p>Oops, it looks like our magical inventory elves are on break! 🧝‍♂️✨</p>
+</div>
+  <% } %>
+</main>
+<%- include('../includes/end.ejs') %>

@@ -1,0 +1,121 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.main-header {
+    height: 3.5rem;
+    color:#495E57;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    margin-inline: 100px;
+}
+
+.logo-container {
+    height: 100%;
+    overflow: hidden;
+    padding-top: 10px;
+}
+
+.logo-container > img {
+    height: 70%;
+    width: auto;
+    cursor: pointer;
+}
+
+.main-nav {
+    height: 100%;
+    width: 90%;
+    display: grid;
+    grid-template-rows: 1fr;
+    justify-self: end;
+    align-items: center;
+    justify-items: end;
+}
+
+.nav-ul {
+    display: grid;
+    grid-template-rows: 1fr;
+    gap: 30px;
+    align-items: center;
+    list-style-type: none;
+}
+
+.nav-ul-not-authenticated {
+    grid-template-columns: repeat(3, auto);
+}
+
+.nav-ul-authenticated {
+    grid-template-columns: repeat(6, auto);
+}
+
+#search-input-container{
+    width: 450px;
+}
+
+#search-input {
+    width: 100%;
+    border:1px solid rgba(0, 0, 0, 0.344);
+    outline: none;
+    border-radius: 5px;
+}
+
+
+.nav-li a {
+    text-decoration: none;
+    color: #495e57da;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+}
+
+.nav-li a.active {
+    color: #495e57;
+    font-weight: bold;
+}
+
+.search-icon {
+    cursor: pointer;
+}
+
+#loginbtn {
+    background-color: rgb(59,113,202);
+    color: white;
+    padding-inline: 22px;
+    padding-block: 11px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.7rem;
+}
+
+#loginbtn:hover, #logout-btn:hover {
+          background-color: rgb(59,113,202, 0.8);
+          transition: all ease 0.3s;
+          color: white;
+}
+
+#logout-btn {
+    background-color: rgb(59,113,202);
+    color: white;
+    padding-inline: 22px;
+    padding-block: 11px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.7rem;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+input {
+    border: 1px solid rgba(0, 0, 0, 0.30);
+    border-radius: 5px;
+    color: #495e57;
+    height: 2.5rem;
+    padding-inline: 1rem;
+    font-family: Karla, sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.15;
+    margin: 0;
+    font-weight: 400;
+}

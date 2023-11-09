@@ -1,0 +1,44 @@
+<%- include('../includes/head.ejs') %> 
+<link rel="stylesheet" href="/css/card.css" />
+<link rel="stylesheet" href="/css/empty-cart.css" />
+</head>
+<body>
+<%- include('../includes/nav.ejs') %>
+<main class="shop-main">
+  <div class="metadata">
+    <h1 style="color: #495E57">Add Product</h1>
+    <form action="/admin/add-product">
+      <button class="add-btn">
+        <span class="hover-text">Add Product</span>
+        <span class="default-text">+</span>
+      </button>
+    </form>
+  </div>
+
+  <% if(prods.length > 0) { %>
+  <section class="cards">
+    <% for(let product of prods) { %>
+    <article class="card">
+      <img class="card-img" src="<%= product.imgUrl %>" alt="Product" />
+      <div class="card-header">
+        <h1 class="card-title"><%= product.title %></h1>
+        <h3 class="card-price">$<%= product.price %></h3>
+      </div>
+      <p class="card-desc"><%= product.description %></p>
+      <div class="action_btns double-btn">
+        <a class="btn" href="/admin/edit-product/<%= product._id %>">Edit</a>
+        <form action="/admin/delete-product/<%= product._id %>" method="POST">
+          <button class="btn del-btn">Delete Item</button>
+        </form>
+      </div>
+    </article>
+    <% } %>
+  </section>
+  <% } else { %>
+  <%- include('../includes/empty-cart.ejs') %>
+  <h3>No products available!</h3>
+  <p>Our shelves are feeling a bit shy today!</p>
+</div>
+  <% } %>
+</main>
+<%- include('../includes/end.ejs') %>

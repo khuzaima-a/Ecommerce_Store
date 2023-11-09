@@ -1,0 +1,97 @@
+.auth-main {
+            display: grid;
+            place-items: center;
+            min-height: 80vh;
+}
+
+.auth-main div {
+          display: grid;
+          place-items: center;
+          min-width: 400px;
+          width: 100vw;
+          grid-template-columns: 1fr;
+          grid-template-rows: auto auto auto;
+          gap:30px;
+}
+
+.auth-heading {
+          font-size: 18px;
+          font-family: noto sans, sans-serif;
+          font-weight: 700;
+}
+
+.login-form {
+          width: 30vw;
+          display: grid;
+          place-items: center;
+          gap: 20px;
+}
+
+fieldset {
+    display: grid;
+    border:none;
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+
+label, legend {
+    color: #495e57;
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    display: block;
+    cursor: pointer;
+}
+
+input {
+    border: 1px solid rgba(0, 0, 0, 0.30);
+    border-radius: 5px;
+    color: #495e57;
+    height: 2.5rem;
+    padding-inline: 1rem;
+    font-family: Karla, sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.15;
+    margin: 0;
+    font-weight: 400;
+}
+
+.auth-btn {
+          background-color: rgb(59,113,202);
+          color: white;
+          border: none;
+          outline: none;
+          width: 100%;
+          padding-block: 10px;
+          border-radius: 5px;
+          cursor: pointer;
+}
+
+.auth-btn:hover {
+          background-color: rgb(59,113,202, 0.8);
+          transition: all ease 0.3s;
+          color: white;
+}
+
+.signup-string {
+          font-size: 15px;
+          color: #1E1E1E;
+          font-family: noto sans, sans-serif;
+          font-weight: 700;
+}
+
+.signup-string a {
+          color: rgb(59,113,202);
+            text-decoration: none;
+          cursor: pointer;
+}
+
+.error-message {
+            color: red;
+            font-size: 18px;
+            font-family: sans-serif;
+            font-weight: 700;
+            width: 100%;
+            text-align: center;
+}

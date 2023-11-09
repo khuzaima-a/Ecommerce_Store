@@ -1,0 +1,15 @@
+body {
+  overflow-y: scroll; /* Always show scrollbar */
+}
+
+
+.shop-main, .no-page-main {
+            padding-inline: 100px;
+}
+
+.add-product-main {
+    padding-inline: 100px;
+    display: grid;
+    justify-content: center;
+    padding-top: 2rem;
+}

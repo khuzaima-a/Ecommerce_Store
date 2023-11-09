@@ -1,0 +1,97 @@
+<header class="main-header">
+  <div class="logo-container"  id="logo-container">
+    <img alt="Logo" src="/assets/logo.jpg" />
+  </div>
+  <nav class="main-nav">
+    <ul class="nav-ul <%= isAuthenticated ? 'nav-ul-authenticated' : 'nav-ul-not-authenticated' %>">
+      <i class="fa fa-search search-icon" aria-hidden="true" onclick="toggleSearch()" id="search-icon"></i>
+      <div id="search-input-container" style="display: none;">
+          <form action="/search">
+          <input type="search" id="search-input" name="q" placeholder="Search Products By Title & Description">
+          </form>
+      </div>
+
+      <li class="nav-li">
+        <a href="/" class="<%= path === '/' ? 'active' : ''%>"> Shop</a>
+      </li>
+      
+      <% if (isAuthenticated) { %>
+
+      <li class="nav-li">
+        <a href="/cart" class="<%= path === '/cart' ? 'active' : ''%>"> Cart</a>
+      </li>
+
+      <li class="nav-li">
+        <a href="/orders" class="<%= path === '/orders' ? 'active' : ''%>"> Orders</a>
+      </li>
+
+      <li class="nav-li">
+        <a
+          href="/admin/products"
+          class="<%= path === '/admin/products' ? 'active' : ''%>">
+          My Products</a
+        >
+      </li>
+
+      <li class="nav-li">
+        <form action="/logout" method="POST">
+          <button type="submit" id="logout-btn">
+              LOGOUT
+          </button>
+          </form>
+      </li>
+
+      <% } else { %>
+      
+      <li class="nav-li">
+        <a
+          href="/login"
+          method="POST"
+          id="loginbtn">
+          LOGIN</a
+        >
+      </li>
+
+      <% } %>
+      
+    </ul>
+  </nav>
+</header>
+
+<script>
+    const logoContainer = document.getElementById('logo-container');
+    logoContainer.addEventListener('click', function() {
+        window.location.href = '/';
+    });
+
+
+    const searchIcon = document.getElementById('search-icon');
+    const searchInputContainer = document.getElementById('search-input-container');
+    const searchInput = document.getElementById('search-input');
+
+    function toggleSearch() {
+        if (searchIcon.style.display === 'none') {
+            searchIcon.style.display = 'inline-block';
+            searchInputContainer.style.display = 'none';
+        } else {
+            searchIcon.style.display = 'none';
+            searchInputContainer.style.display = 'block';
+            searchInput.focus();
+        }
+    }
+
+    document.addEventListener('click', function (event) {
+        if (event.target !== searchInput && event.target !== searchIcon) {
+            if (searchInput.value === '') {
+                searchIcon.style.display = 'inline-block';
+                searchInputContainer.style.display = 'none';
+            }
+        }
+    });
+
+    searchInputContainer.addEventListener('click', function (event) {
+        event.stopPropagation();
+    });
+
+</script>
+

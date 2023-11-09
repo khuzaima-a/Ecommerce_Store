@@ -1,0 +1,33 @@
+.details-main {
+    padding-inline: 100px;
+    padding-block: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    color: #495e57;
+    grid-gap: 20px;
+}
+
+.details-right {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto 3fr;
+    gap: 40px;
+}
+
+.details-right p {
+    font-size: 1.5rem;
+}
+
+.details-img {
+    overflow: hidden;;
+    background-color: black;
+    border-radius: 20px;
+    height: 70vh;
+}
+
+.details-img img {
+    width: 100%;
+    height: 100%;
+     object-fit:cover;;
+}

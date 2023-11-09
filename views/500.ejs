@@ -1,0 +1,72 @@
+<%- include('./includes/head.ejs') %> 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@600&family=Young+Serif&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/orders.css" />
+
+<style>
+    .error-page {
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+
+    .text {
+        place-self: center;
+        text-align: center;
+        color: #495e57;
+        font-family: 'Gemunu Libre', sans-serif;
+        font-family: 'Young Serif', serif;
+        height: 100%;
+        width: 100%;
+        padding: 0 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        animation-name: float;
+        animation-duration: 3s;
+        animation-timing-function:linear;
+        animation-iteration-count:infinite;
+    }
+
+    @keyframes float {
+        0% {
+           transform: translatey(0px);
+        }
+
+        50% {
+            transform: translatey(-5px);
+        }
+
+        100% {
+            transform: translatey(0px);
+        }
+    }
+
+
+    .heading {
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .desc {
+        font-size: 16px;
+    }
+</style>
+</head>
+<body>
+
+<div class="error-page">
+<%- include('./includes/nav.ejs') %>  
+    <div class="text">
+        <h1 class="heading">
+            Some error occured!
+        </h1>
+        <p class="desc">
+            We're working on fixing it🛠️🚧. Sorry for the incovenience!
+        </p>
+    </div>
+</div>
+<%- include('./includes/end.ejs') %>

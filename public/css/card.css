@@ -1,0 +1,166 @@
+.cards {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 15px;
+}
+
+.card {
+  background-color: #e3e8e7;
+  border-radius: 16px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 3fr auto auto 1fr;
+  grid-gap: 12px;
+}
+
+.card-img {
+  width:100%;
+  height: 175px;
+  object-fit:cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover .card-img {
+  transform: scale(1.1);
+}
+
+.card-header {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  padding-inline: 30px;
+  padding-block: 0px;
+}
+
+.card-title{
+  font-family: Karla,sans-serif;
+  color: #495e57;
+  font-size: 1.15rem;
+  font-weight: bold;
+  align-self: center;
+}
+
+.card-price {
+  font-family: 'Karla';
+  font-size: 20px;
+  color: #EE9972;
+  place-self: center;
+}
+
+.card-desc {
+  padding-inline: 30px;
+  font-family: 'Karla';
+  font-weight: 400;
+  font-size: 20px;
+  color: #495E57;
+  margin: 0px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Buttons Styling */
+
+.action_btns {
+  display: grid;
+  place-items: center;
+  padding-inline: 30px;
+}
+
+.double-btn {
+  grid-template-columns: auto auto;
+}
+
+.btn {
+  font-family: Karla;
+  font-weight: 700;
+  font-size: 1.2rem;
+  background-color: rgb(73, 94, 87);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding-inline: 10px;
+  padding-block: 5px;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+.btn:hover {
+    background-color: rgb(73, 94, 87, 0.8);
+    color:white;
+    transition: 0.2s ease-in-out;
+}
+
+.del-btn:hover {
+  background-color: rgb(164, 23, 23);
+  transition: 0.2s ease-in-out;
+  color: white;
+}
+
+.btns_edit_del {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  padding-inline: 30px;
+}
+
+.order-now-btn {
+  display: grid;
+  place-items: center;
+}
+
+.metadata {
+  display: grid;
+  grid-template-columns: auto auto;
+  margin-top: 20px;
+}
+
+.metadata h1, .heading {
+  font-size: 25px;
+  font-family:'Times New Roman', Times, serif
+}
+
+.metadata form {
+  justify-self: end;
+  margin-right: 2px;
+}
+
+.add-btn {
+  border: 2px solid #495E57;
+  cursor: pointer;
+  font-size: 22px;
+  padding-inline: 8px;
+  padding-block: 1px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.add-btn:hover {
+  background-color: #495E57;
+  color: white;
+}
+
+.add-btn .hover-text {
+  display: none;
+  font-size: 18px;
+  position: relative;
+  top: -1px;
+}
+
+.add-btn:hover .hover-text {
+  display: inline-block;
+  animation: slide 0.5s ease-in-out;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(20px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
