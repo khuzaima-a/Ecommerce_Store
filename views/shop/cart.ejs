@@ -9,7 +9,7 @@
   <section class="cards" style="margin-bottom: 30px;">
     <% for(let p of products) { %>
     <article class="card">
-      <img class="card-img" src="<%= p.productId.imgUrl %>" alt="Product" />
+      <img class="card-img" src="/<%= p.productId.imgUrl %>" alt="Product" />
       <div class="card-header">
         <h1 class="card-title"><%= p.productId.title %></h1>
         <h3 class="card-price">$<%= p.productId.price %></h3>

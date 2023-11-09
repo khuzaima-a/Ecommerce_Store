@@ -1,5 +1,6 @@
 const Product = require("../models/product");
 const Order = require("../models/order");
+const {createInvoice} = require('../utils/createInvoice')
 
 exports.getIndex = (req, res, next) => {
   Product.find()
@@ -177,4 +178,45 @@ exports.search = (req, res, next) => {
       error.httpStatusCode = 500;
       return next(error);
     });
+};
+
+exports.getInvoice = (req, res, next) => {
+  const id = req.params.orderId;
+  Order.findById(id).then((order) => {
+    if (!order) {
+      return next(new Error("No order found"));
+    }
+    if (order.user.userId.toString() !== req.user._id.toString()) {
+      return next(new Error("Unauthorized"));
+    }
+    const invoiceName = "invoice-" + id + ".pdf";
+
+    const totalPrice = order.products.reduce((acc, item) => {
+      return acc + item.product.price * item.quantity;
+    }, 0);
+
+    const invoice = {
+      buyer: {
+        order_id: order._id,
+        name: order.user.name,
+        email: req.user.email,
+      },
+      items: order.products.map((item) => {
+        return {
+          item: item.product.title,
+          quantity: item.quantity,
+          amount: item.product.price,
+        };
+      }),
+      subtotal: totalPrice
+    };
+
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader(
+      "Content-Disposition",
+      'inline; filename="' + invoiceName + '"'
+    );
+
+    createInvoice(invoice, res);
+  })
 };

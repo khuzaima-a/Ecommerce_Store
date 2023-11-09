@@ -15,7 +15,13 @@
                 <div style="width: 100%;">
                 <div class="order-metadata">
                     <p class="order-id">Order # <%= order._id %></p>
-                    <p class="totalPrice">Total Cost: $<%= order.totalPrice %></p>
+                    <p class="totalPrice">Total Cost: $<%= order.totalPrice %>
+                        &nbsp
+                        <a href="/orders/<%=order._id%>" >
+                            <i class="fa fa-download" style="font-size:15px;color:#495E57;"></i>
+                        </a>
+                    </p>
+                    
                 </div>
                 <article class="order">
                     <% for(let p of order.products) { %>
