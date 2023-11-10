@@ -25,6 +25,7 @@
     </article>
     <% } %>
   </section>
+  <%- include('../includes/pagination.ejs', {currentPage: currentPage, nextPage: nextPage, previousPage: previousPage, lastPage: lastPage, hasNextPage: hasNextPage, hasPreviousPage: hasPreviousPage}) %>
   <% } else { %>
   <%- include('../includes/empty-cart.ejs') %>
   <h3>Check back soon! 🛒🌟</h3>

@@ -1,14 +1,31 @@
 const Product = require("../models/product");
 const Order = require("../models/order");
-const {createInvoice} = require('../utils/createInvoice')
+const { createInvoice } = require("../utils/createInvoice");
+
+const ITEMS_PER_PAGE = 2;
 
 exports.getIndex = (req, res, next) => {
+  const page = +req.query.page || 1;
+  let totalItems;
   Product.find()
+    .countDocuments()
+    .then((numProducts) => {
+      totalItems = numProducts;
+      return Product.find()
+        .skip((page - 1) * ITEMS_PER_PAGE)
+        .limit(ITEMS_PER_PAGE);
+    })
     .then((products) => {
       res.render("shop/index", {
         pageTitle: "Shop",
         path: "/",
         prods: products,
+        currentPage: page,
+        hasNextPage: ITEMS_PER_PAGE * page < totalItems,
+        hasPreviousPage: page > 1,
+        nextPage: page + 1,
+        previousPage: page - 1,
+        lastPage: Math.ceil(totalItems / ITEMS_PER_PAGE),
       });
     })
     .catch((err) => {
@@ -19,19 +36,34 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  Product.find()
-    .then((products) => {
-      res.render("shop/product-list", {
-        pageTitle: "Products",
-        path: "/products",
-        prods: products,
+    const page = +req.query.page || 1;
+    let totalItems;
+    Product.find()
+      .countDocuments()
+      .then((numProducts) => {
+        totalItems = numProducts;
+        return Product.find()
+          .skip((page - 1) * ITEMS_PER_PAGE)
+          .limit(ITEMS_PER_PAGE);
+      })
+      .then((products) => {
+        res.render("shop/product-list", {
+          pageTitle: "Products",
+          path: "/products",
+          prods: products,
+          currentPage: page,
+          hasNextPage: ITEMS_PER_PAGE * page < totalItems,
+          hasPreviousPage: page > 1,
+          nextPage: page + 1,
+          previousPage: page - 1,
+          lastPage: Math.ceil(totalItems / ITEMS_PER_PAGE),
+        });
+      })
+      .catch((err) => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
       });
-    })
-    .catch((err) => {
-      const error = new Error(err);
-      error.httpStatusCode = 500;
-      return next(error);
-    });
 };
 
 exports.getProduct = (req, res, next) => {
@@ -55,20 +87,20 @@ exports.getProduct = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
-    req.user
-      .populate("cart.items.productId")
-      .then((user) => {
-        res.render("shop/cart", {
-          pageTitle: "My Cart",
-          path: "/cart",
-          products: user.cart.items.filter((item) => item.productId !== null),
-        });
-      })
-      .catch((err) => {
-        const error = new Error(err);
-        error.httpStatusCode = 500;
-        return next(error);
+  req.user
+    .populate("cart.items.productId")
+    .then((user) => {
+      res.render("shop/cart", {
+        pageTitle: "My Cart",
+        path: "/cart",
+        products: user.cart.items.filter((item) => item.productId !== null),
       });
+    })
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
 };
 
 exports.postToCart = (req, res, next) => {
@@ -208,7 +240,7 @@ exports.getInvoice = (req, res, next) => {
           amount: item.product.price,
         };
       }),
-      subtotal: totalPrice
+      subtotal: totalPrice,
     };
 
     res.setHeader("Content-Type", "application/pdf");
@@ -218,5 +250,5 @@ exports.getInvoice = (req, res, next) => {
     );
 
     createInvoice(invoice, res);
-  })
+  });
 };

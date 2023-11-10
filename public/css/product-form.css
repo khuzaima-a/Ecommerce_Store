@@ -52,3 +52,14 @@ textarea {
     cursor: pointer;
     background-color: rgb(73, 94, 87, 0.8);
 }
+
+.image-upload {
+    width: 100%;
+    padding-block: 7px;
+    color: #495e57;
+    cursor: pointer;
+}
+
+.image-upload:hover {
+    background-color: rgb(73, 94, 87, 0.05);
+}

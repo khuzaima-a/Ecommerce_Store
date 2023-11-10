@@ -5,6 +5,8 @@ body {
 
 .shop-main, .no-page-main {
             padding-inline: 100px;
+            margin-bottom: 2rem;
+            /* background-color: red; */
 }
 
 .add-product-main {

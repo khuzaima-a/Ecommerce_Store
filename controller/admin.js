@@ -84,9 +84,7 @@ exports.postAddProduct = (req, res, next) => {
 };
 
 exports.postEditProduct = (req, res, next) => {
-  console.log("HERE");
   const image = req.file;
-  console.log(image);
   const id = req.body.id;
   const errors = validationResult(req);
 
